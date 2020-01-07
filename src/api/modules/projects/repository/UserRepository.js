@@ -1,5 +1,5 @@
-const { UserDataMapper } = require('../data/UserDataMapper');
-const { UserEntity } = require('../data/UserEntity');
+import { UserDataMapper } from '@app/api/modules/projects/data/UserDataMapper';
+import { UserEntity } from '@app/api/modules/projects/data/UserEntity';
 
 class RepositorySearchOptions {
     id;
@@ -50,7 +50,7 @@ class BaseRepository {
     }
 }
 
-class UserRepository extends BaseReposiory {
+export class UserRepository extends BaseRepository {
     constructor() {
         super(UserEntity, new UserDataMapper());
     }
@@ -79,7 +79,3 @@ class UserRepository extends BaseReposiory {
         return this._convert(data);
     }
 }
-
-module.exports = {
-    UserRepository
-};

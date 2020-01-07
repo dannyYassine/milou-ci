@@ -1,8 +1,7 @@
-const { BlockOperation, Operation } = require('operationkit');
-const { BaseService } = require('./../../../utils/BaseService');
-const { UserRepository } = require('./../repository/UserRepository');
+import { BaseService } from '@app/api/utils/BaseService';
+import { UserRepository } from '@app/api/modules/projects/repository/UserRepository';
 
-class ProjectService extends BaseService {
+export class ProjectService extends BaseService {
 
     constructor() {
         super();
@@ -10,11 +9,11 @@ class ProjectService extends BaseService {
     }
 
     create() {
-        
+
     }
 
     /**
-     * @param {number?} id 
+     * @param {number?} id
      * @returns {User}
      */
     async read(id) {
@@ -36,16 +35,5 @@ class ProjectService extends BaseService {
 
     update() {
 
-    }
-}
-
-module.exports = {
-    ProjectService
-}
-
-class ReadOperation extends Operation {
-
-    run() {
-        return Promise.resolve([]);
     }
 }

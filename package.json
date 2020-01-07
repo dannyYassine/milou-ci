@@ -4,6 +4,7 @@
   "description": "Javascript CI",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node -e \"var s='../src',d='node_modules/@app',fs=require('fs');fs.exists(d,function(e){e||fs.symlinkSync(s,d,'dir')});\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-modules --es-module-specifier-resolution=node src/server"
   },
@@ -11,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "app": "file:./src/",
     "@types/node": "^13.1.4",
     "express": "^4.17.1",
     "operationkit": "^0.2.2",

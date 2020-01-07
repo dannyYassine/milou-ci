@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 
-const { ProjectService } = require('./services/ProjectService');
+import { ProjectService } from './services/ProjectService';
 
-const router = express.Router();
+export const router = express.Router();
 
 router.get('/', async (_request, response) => {
     response.status(200).json({
@@ -16,7 +16,3 @@ router.get('/:id', async (request, response) => {
         data: await ProjectService.factory().read(request.params.id)
     });
 });
-
-module.exports = {
-    router
-};

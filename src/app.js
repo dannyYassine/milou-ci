@@ -31,7 +31,7 @@ export class Application {
      * Execute application
      */
     run() {
-        this.app.listen(port, () => {
+        this.app.listen(config.port, () => {
             console.log(`Example app listening on port ${config.port}!`)
         });
     }

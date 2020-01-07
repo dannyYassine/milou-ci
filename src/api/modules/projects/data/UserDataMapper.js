@@ -1,5 +1,5 @@
-const { UserEntity } = require('../data/UserEntity');
-const { User } = require('../models/User');
+import { UserEntity }from '@app/api/modules/projects/data/UserEntity';
+import { User } from '@app/api/modules/projects/models/User';
 
 class BaseDataMapper {
     constructor(model, entity) {
@@ -25,7 +25,7 @@ class BaseDataMapper {
     }
 }
 
-class UserDataMapper extends BaseDataMapper {
+export class UserDataMapper extends BaseDataMapper {
     constructor() {
         super(User, UserEntity);
     }
@@ -51,8 +51,4 @@ class UserDataMapper extends BaseDataMapper {
             lastName: data.last_name,
         })
     }
-}
-
-module.exports = {
-    UserDataMapper
 }

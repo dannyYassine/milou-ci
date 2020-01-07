@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const { sequelize } = require('../../../../loaders/sequelize');
+import Sequelize from 'sequelize';
+import { sequelize } from '@app/loaders/sequelize';
 
 const User = sequelize.define('users', {
   first_name: {
@@ -10,6 +10,4 @@ const User = sequelize.define('users', {
   }
 });
 
-module.exports = {
-  UserEntity: User
-}
+export const UserEntity = User;
