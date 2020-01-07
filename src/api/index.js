@@ -4,12 +4,6 @@ const { router: projectsRouter } = require('./modules/projects/routes');
 /**
  * @param {Express.Application} app 
  */
-function init(app) {
+export function init(app) {
     app.use('/api/projects', projectsRouter);
-
-
 }
-
-module.exports = {
-    init
-};

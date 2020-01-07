@@ -1,11 +1,11 @@
-const express = require('express');
-const port = require('./../milou.config.json').port;
-const {init: ApiInit} = require('./api');
+import express from 'express';
+import config from './../milou.config.json';
+import {init as ApiInit} from './api';
 
-class Application {
+export class Application {
 
     /**
-     * @type {Express.Application}
+     * @type {express.Application}
      */
     app;
 
@@ -32,11 +32,7 @@ class Application {
      */
     run() {
         this.app.listen(port, () => {
-            console.log(`Example app listening on port ${port}!`)
+            console.log(`Example app listening on port ${config.port}!`)
         });
     }
-}
-
-module.exports = {
-    Application
 }

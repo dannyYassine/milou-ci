@@ -1,4 +1,4 @@
-const { Application } = require('./app');
+import { Application } from './app';
 
 new Application()
     .bootstrap()
