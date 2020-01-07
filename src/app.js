@@ -1,6 +1,6 @@
 import express from 'express';
 import config from './../milou.config.json';
-import {init as ApiInit} from './api';
+import { init as ApiInit } from './api';
 
 export class Application {
 

@@ -1,34 +1,7 @@
+import { BaseUserCaseService } from "@app/core/BaseUseCaseService";
+import { CreateUserDuplicateEmailError} from "@app/api/modules/projects/errors/CreateUserDuplicateEmailError";
 
-class CreateUserDto {
-  username;
-  email;
-  password;
-
-  constructor({username, email, password}) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-  }
-}
-
-class CreateUserDuplicateEmailError extends Error {
-  constructor() {
-    super();
-    this.message = 'There is already an email.';
-  }
-}
-
-class BaseUserCaseService {
-
-  /**
-   * @abstract
-   * @param {*?} any
-   */
-  execute(any) {};
-}
-
-class CreateUserService extends BaseUserCaseService {
-
+export class CreateUserService extends BaseUserCaseService {
   /**
    *
    * @param {UserRepository} userRepository

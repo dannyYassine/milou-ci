@@ -1,3 +1,4 @@
-const ioc = require('ioc-node')(__dirname);
+import path from 'path';
+import iocFn from 'ioc-node';
 
-export { ioc };
+export const ioc = iocFn(path.resolve());

@@ -1,11 +1,11 @@
 import { BaseService } from '@app/api/utils/BaseService';
-import { UserRepository } from '@app/api/modules/projects/repository/UserRepository';
 
 export class ProjectService extends BaseService {
 
-    constructor() {
+    constructor(userRepository, eventDispatcher) {
         super();
-        this.userRepository = new UserRepository();
+        this.userRepository = userRepository;
+        this.eventDispatcher = eventDispatcher;
     }
 
     create() {
