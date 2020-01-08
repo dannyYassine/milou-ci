@@ -5,13 +5,17 @@ export class BaseProvider {
     this.ioc = ioc;
   }
 
-  /**
-   * @abstract
-   */
   register() {}
+
+  boot() {}
 
   static bootstrap() {
     const provider = new this();
     provider.register();
+  }
+
+  static init() {
+    const provider = new this();
+    provider.boot();
   }
 }

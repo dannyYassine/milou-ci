@@ -6,7 +6,7 @@ export class PresenterApi {
    * @param data
    * @returns {Json | string | any | Promise<any>}
    */
-  static sendResponse(response, data) {
+  static send(response, data) {
     return response.status(200).json(data);
   }
 }

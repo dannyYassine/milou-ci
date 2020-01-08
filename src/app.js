@@ -1,6 +1,7 @@
 import express from 'express';
-import config from './../milou.config.json';
+import {ioc} from '@app/api/providers/ioc';
 import { init as ApiInit } from './api';
+import {setup} from '@app/api/providers';
 
 export class Application {
 
@@ -17,6 +18,7 @@ export class Application {
      * Load and setup application dependencies
      */
     bootstrap() {
+        setup();
 
         ApiInit(this.app);
 
@@ -31,6 +33,7 @@ export class Application {
      * Execute application
      */
     run() {
+        const config = ioc.use('Config');
         this.app.listen(config.port, () => {
             console.log(`Example app listening on port ${config.port}!`)
         });

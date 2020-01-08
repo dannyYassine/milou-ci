@@ -1,7 +1,13 @@
-import { ioc } from '@app/providers/ioc';
-
+import { ConfigProvider } from "@app/api/providers/ConfigProvider";
 import { UserProvider } from "@app/api/providers/UserProvider";
+import { EventProvider } from "@app/api/providers/EventProvider";
 
-UserProvider.bootstrap();
+export const setup = () => {
+  ConfigProvider.bootstrap();
+  EventProvider.bootstrap();
+  UserProvider.bootstrap();
 
-export const ioc = ioc;
+  ConfigProvider.init();
+  EventProvider.init();
+  UserProvider.init();
+};

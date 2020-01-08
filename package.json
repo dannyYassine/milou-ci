@@ -4,7 +4,6 @@
   "description": "Javascript CI",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node -e \"var s='../src',d='node_modules/@app',fs=require('fs');fs.exists(d,function(e){e||fs.symlinkSync(s,d,'dir')});\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-modules --es-module-specifier-resolution=node src/server"
   },
@@ -15,6 +14,7 @@
     "@types/node": "^13.1.4",
     "express": "^4.17.1",
     "ioc-node": "^2.3.2",
+    "nodemailer": "^6.4.2",
     "operationkit": "^0.2.2",
     "sequelize": "^5.21.3",
     "sqlite3": "^4.1.1",
