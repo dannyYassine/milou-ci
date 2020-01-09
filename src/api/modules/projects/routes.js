@@ -16,27 +16,32 @@ export function router(app) {
     // });
     //
     // router.get('/:id', async (request, response) => {
-    //     return PresenterApi.sendResponse(
+    //     return PresenterApi.send(
     //       response,
     //       await ioc.use('ProjectCRUD').read(request.params.id)
     //     );
     // });
 
-    router.get('/signup', async (request, response) => {
+    router.get('/signup', async (request, response, next) => {
+      try {
+        console.log(request.query);
         return PresenterApi.send(
           response,
-          ioc.use('createUser').execute(new CreateUserDto({
-              username: request.params.username,
-              password: request.params.password,
-              email: request.params.email
+          await ioc.use('createUser').execute(new CreateUserDto({
+            username: request.query.username,
+            password: request.query.password,
+            email: request.query.email
           }))
         );
+      } catch (e) {
+        next(e);
+      }
     });
 
-    router.get('/event', async (request, response) => {
-        return PresenterApi.send(
-          response,
-          ioc.use('eventDispatcher').emit(new UserCreatedEvent(123))
-        );
-    });
+    // router.get('/event', async (request, response) => {
+    //     return PresenterApi.send(
+    //       response,
+    //       ioc.use('eventDispatcher').emit(new UserCreatedEvent(123))
+    //     );
+    // });
 }

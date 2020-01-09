@@ -1,5 +1,6 @@
 import { BaseUserCaseService } from "@app/core/BaseUseCaseService";
 import { CreateUserDuplicateEmailError} from "@app/api/modules/projects/errors/CreateUserDuplicateEmailError";
+import {UserCreatedEvent} from "@app/api/modules/projects/events/UserCreatedEvent";
 
 export class CreateUserService extends BaseUserCaseService {
   /**
@@ -14,7 +15,6 @@ export class CreateUserService extends BaseUserCaseService {
   }
 
   /**
-   *
    * @param {CreateUserDto} createUserDto
    */
   execute(createUserDto) {
@@ -26,7 +26,7 @@ export class CreateUserService extends BaseUserCaseService {
 
     const user = this.userRepository.create(email, username, password);
 
-    this.eventDispatcher.emit(new CreateUserEvent(user.id));
+    this.eventDispatcher.emit(new UserCreatedEvent(user.id));
 
     return user;
   }

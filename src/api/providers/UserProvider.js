@@ -8,7 +8,10 @@ import {UserCreated} from "../listeners/UserCreated";
 export class UserProvider extends BaseProvider {
   register() {
     this.ioc.bind('createUser', () => {
-      return new CreateUserService(new UserRepository(), this.ioc.use('eventDispatcher'))
+      return new CreateUserService({
+        userRepository: new UserRepository(),
+        eventDispatcher: this.ioc.use('eventDispatcher')
+      })
     });
     this.ioc.bind('ProjectCRUD', () => {
       return new ProjectService(new UserRepository(), this.ioc.use('eventDispatcher'))

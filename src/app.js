@@ -26,6 +26,14 @@ export class Application {
             res.send('Hello World!')
         });
 
+        this.app.use(function (err, req, res, next) {
+            const errorCode = err.constructor.name === 'Error' ? 500 : 404;
+            res.status(errorCode).json({
+                error: errorCode,
+                data: err.message
+            });
+        });
+
         return this;
     }
 
