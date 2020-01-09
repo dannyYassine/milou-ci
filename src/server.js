@@ -1,3 +1,4 @@
+console.log('server');
 import { Application } from './app';
 
 new Application()

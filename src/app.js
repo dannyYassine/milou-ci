@@ -18,6 +18,7 @@ export class Application {
      * Load and setup application dependencies
      */
     bootstrap() {
+        console.log('bootstrap');
         setup();
 
         ApiInit(this.app);
@@ -27,6 +28,7 @@ export class Application {
         });
 
         this.app.use(function (err, req, res, next) {
+            console.log(err.stack);
             const errorCode = err.constructor.name === 'Error' ? 500 : 404;
             res.status(errorCode).json({
                 error: errorCode,
