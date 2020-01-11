@@ -1,1 +1,1 @@
-export { MailService } from './nodemailer';
+export { MailService } from './MailService';
