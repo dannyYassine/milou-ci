@@ -9,12 +9,8 @@ export function router(app) {
 
   router.get('/:id', async (request, response, next) => {
     try {
-      return PresenterApi.send(
-        response,
-        await ioc
-          .use('eventDispatcher')
-          .emit(new TriggeredJobEvent(request.params.id))
-      );
+      ioc.use('eventDispatcher').emit(new TriggeredJobEvent(request.params.id));
+      return PresenterApi.send(response, true);
     } catch (e) {
       next(e);
     }

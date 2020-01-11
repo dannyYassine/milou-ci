@@ -1,7 +1,7 @@
-import { BaseUserCaseService } from '@app/core/BaseUseCaseService'
+import { BaseUserCaseService } from '@app/core/BaseUseCaseService';
 
 export class BuildJobUseCase extends BaseUserCaseService {
   execute(any) {
-    console.log(any)
+    console.log('1');
   }
 }

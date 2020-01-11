@@ -1,14 +1,17 @@
-import {EventEmitter} from "events";
+import { EventEmitter } from 'events';
 
 export class EventDispatcher extends EventEmitter {
-
   /**
    *
    * @param {BaseEvent} event
    * @param {BaseEventHandler} handler
    */
   emit(event) {
-    return super.emit(event.constructor.name, event);
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(super.emit(event.constructor.name, event));
+      }, 0);
+    });
   }
 
   /**
@@ -16,7 +19,7 @@ export class EventDispatcher extends EventEmitter {
    * @param listener
    */
   on(event, listener) {
-    super.on(event.name, (e) => {
+    super.on(event.name, e => {
       new listener().handle(e);
     });
   }

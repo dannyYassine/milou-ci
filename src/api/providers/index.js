@@ -1,7 +1,7 @@
 import { ConfigProvider } from '@app/api/providers/ConfigProvider';
 import { UserProvider } from '@app/api/providers/UserProvider';
 import { EventProvider } from '@app/api/providers/EventProvider';
-import { JobProvider } from '@app/api/modules/job/providers';
+import { JobProvider } from '@app/api/modules/jobs/providers';
 
 export const setup = () => {
   ConfigProvider.bootstrap();
