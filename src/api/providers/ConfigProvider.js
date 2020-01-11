@@ -1,4 +1,4 @@
-import {BaseProvider} from "@app/api/providers/BaseProvider";
+import { BaseProvider } from '@app/api/providers/BaseProvider';
 import config from './../../../milou.config.json';
 import { MailService } from './../../infra/mail';
 
@@ -10,6 +10,10 @@ export class ConfigProvider extends BaseProvider {
 
     this.ioc.singleton('MailService', () => {
       return new MailService();
+    });
+
+    this.ioc.singleton('Env', () => {
+      return { ...process.env };
     });
   }
 }
