@@ -1,3 +1,3 @@
-import { Application } from './app';
+import { Application } from './interfaces/http/app';
 
 new Application().bootstrap().run();

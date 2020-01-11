@@ -1,7 +1,7 @@
 import express from 'express';
 import { ioc } from '@app/api/providers/ioc';
-import { init as ApiInit } from './api';
 import { setup } from '@app/api/providers';
+import { init as ApiInit } from './../../api';
 
 export class Application {
   /**
