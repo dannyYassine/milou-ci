@@ -1,2 +1,3 @@
 node_modules
-database/milou.db
+.idea
+src/infra/database/milou.db
