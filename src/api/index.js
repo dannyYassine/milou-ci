@@ -1,9 +1,10 @@
-import express from 'express';
-import { router as projectsRouter } from './modules/projects/routes';
+import { router as projectsRouter } from '@app/src/modules/projects/routes';
+import { router as jobsrouter } from '@app/src/modules/jobs/routes';
 
 /**
- * @param {Express.Application} app 
+ * @param {express.Application} app
  */
 export function init(app) {
-    projectsRouter(app);
+  projectsRouter(app);
+  jobsrouter(app);
 }

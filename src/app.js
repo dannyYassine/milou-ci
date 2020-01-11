@@ -1,51 +1,49 @@
 import express from 'express';
-import {ioc} from '@app/api/providers/ioc';
+import { ioc } from '@app/api/providers/ioc';
 import { init as ApiInit } from './api';
-import {setup} from '@app/api/providers';
+import { setup } from '@app/api/providers';
 
 export class Application {
+  /**
+   * @type {express.Application}
+   */
+  app;
 
-    /**
-     * @type {express.Application}
-     */
-    app;
+  constructor() {
+    this.app = express();
+  }
 
-    constructor() {
-        this.app = express();
-    }
+  /**
+   * Load and setup application dependencies
+   */
+  bootstrap() {
+    setup();
 
-    /**
-     * Load and setup application dependencies
-     */
-    bootstrap() {
-        console.log('bootstrap');
-        setup();
+    ApiInit(this.app);
 
-        ApiInit(this.app);
+    this.app.get('/', (req, res) => {
+      res.send('Hello World!');
+    });
 
-        this.app.get('/', (req, res) => {
-            res.send('Hello World!')
-        });
+    this.app.use(function(err, req, res, next) {
+      console.log(err.stack);
+      const errorCode = err.constructor.name === 'Error' ? 500 : 404;
+      res.status(errorCode).json({
+        error: errorCode,
+        data: err.message,
+      });
+    });
 
-        this.app.use(function (err, req, res, next) {
-            console.log(err.stack);
-            const errorCode = err.constructor.name === 'Error' ? 500 : 404;
-            res.status(errorCode).json({
-                error: errorCode,
-                data: err.message
-            });
-        });
+    return this;
+  }
 
-        return this;
-    }
-
-    /**
-     * Execute application
-     */
-    run() {
-        const config = ioc.use('Config');
-        this.app.listen(config.port, () => {
-            console.log(`Example app listening on port ${config.port}!`)
-        });
-    }
+  /**
+   * Execute application
+   */
+  run() {
+    const config = ioc.use('Config');
+    this.app.listen(config.port, () => {
+      console.log(`Example app listening on port ${config.port}!`);
+    });
+  }
 }
