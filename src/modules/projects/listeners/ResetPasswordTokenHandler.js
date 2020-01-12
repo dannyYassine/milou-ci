@@ -1,8 +1,12 @@
-import { BaseEventHandler } from '@app/api/listeners/BaseEventHandler';
+import { BaseEventHandler } from '@app/core/listeners/BaseEventHandler';
+import { ResetPasswordTokenCreatedEvent } from '@app/modules/projects/events/ResetPasswordTokenCreatedEvent';
 
 export class ResetPasswordTokenHandler extends BaseEventHandler {
+  addSubscriptions() {
+    this.subscribeTo(ResetPasswordTokenCreatedEvent);
+  }
+
   /**
-   *
    * @param {ResetPasswordTokenCreatedEvent} event
    */
   handle(event) {

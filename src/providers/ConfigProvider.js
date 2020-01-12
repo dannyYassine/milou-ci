@@ -1,5 +1,5 @@
 import { BaseProvider } from '@app/core/BaseProvider';
-import config from '@app/../../milou.config.json';
+import config from './../../milou.config.json';
 import { MailService } from '@app/infra/mail';
 
 export class ConfigProvider extends BaseProvider {

@@ -1,4 +1,4 @@
-import { BaseEventHandler } from '@app/api/listeners/BaseEventHandler'
+import { BaseEventHandler } from '@app/core/listeners/BaseEventHandler';
 
 export class TriggeredJobHandler extends BaseEventHandler {
   /**
@@ -8,6 +8,6 @@ export class TriggeredJobHandler extends BaseEventHandler {
   handle(event) {
     this.ioc.use('BuildJobUseCase').execute({
       jobId: event.jobId, // list of receivers
-    })
+    });
   }
 }

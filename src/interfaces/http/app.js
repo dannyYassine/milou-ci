@@ -1,6 +1,6 @@
 import express from 'express';
 import { ioc } from '@app/core/ioc';
-import { setup } from '@app/providers';
+import { setup } from './../../providers';
 import { init as ApiInit } from '@app/interfaces/http/api';
 
 export class Application {

@@ -2,7 +2,7 @@ import express from 'express';
 import { ioc } from '@app/core/ioc';
 import { CreateUserDto } from '@app/modules/projects/dtos/CreateUserDto';
 import { PresenterApi } from '@app/interfaces/http/core/PresenterApi';
-import { UserCreatedEvent } from './events/UserCreatedEvent';
+import { UserCreatedEvent } from '@app/modules/projects/events/UserCreatedEvent';
 import { ResetUserPasswordDto } from './dtos/ResetUserPasswordDto';
 
 export function router(app) {

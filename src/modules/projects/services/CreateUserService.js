@@ -26,7 +26,7 @@ export class CreateUserService extends BaseUserCaseService {
 
     const user = this.userRepository.create(email, username, password);
 
-    this.eventDispatcher.emit(new UserCreatedEvent(user.id));
+    this.eventDispatcher.emit(new UserCreatedEvent(user));
 
     return user;
   }

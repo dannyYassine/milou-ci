@@ -1,5 +1,5 @@
 import { BaseProvider } from '@app/core/BaseProvider';
-import { EventDispatcher } from '@app/modules/core/events/EventDispatcher';
+import { EventDispatcher } from '@app/core/events/EventDispatcher';
 
 export class EventProvider extends BaseProvider {
   register() {
