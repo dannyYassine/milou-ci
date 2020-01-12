@@ -1,0 +1,10 @@
+{
+    "folders": [],
+    "settings": {},
+    "[javascript]": {
+      "editor.formatOnSave": true
+    },
+    "npm.enableRunFromFolder": true,
+    "npm.enableScriptExplorer": true,
+    "npm.enableTouchbar": true
+  }

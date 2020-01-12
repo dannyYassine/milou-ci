@@ -1,7 +1,7 @@
 import express from 'express';
-import { ioc } from '@app/api/providers/ioc';
-import { setup } from '@app/api/providers';
-import { init as ApiInit } from './../../api';
+import { ioc } from '@app/core/ioc';
+import { setup } from '@app/providers';
+import { init as ApiInit } from '@app/interfaces/http/api';
 
 export class Application {
   /**
@@ -23,6 +23,10 @@ export class Application {
 
     this.app.get('/', (req, res) => {
       res.send('Hello World!');
+    });
+
+    this.app.get('/health', (req, res) => {
+      res.status(200).json({ data: 'Healthy' });
     });
 
     this.app.use(function(err, req, res, next) {
