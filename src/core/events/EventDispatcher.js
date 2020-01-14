@@ -11,6 +11,8 @@ export class EventDispatcher extends EventEmitter {
         resolve(super.emit(event.constructor.name, event));
       }, 0);
     });
+
+    return this;
   }
 
   /**
@@ -21,6 +23,8 @@ export class EventDispatcher extends EventEmitter {
     super.on(event.name, e => {
       listener(e);
     });
+
+    return this;
   }
 
   /**
@@ -29,7 +33,9 @@ export class EventDispatcher extends EventEmitter {
    */
   handle(event, handler) {
     super.on(event.name, e => {
-      new handler().handl(e);
+      new handler().handle(e);
     });
+
+    return this;
   }
 }

@@ -7,12 +7,13 @@ import { UserCreated } from '@app/core/listeners/UserCreated';
 import { ResetUserPasswordUseCase } from '../modules/projects/services/ResetUserPasswordUseCase';
 import { ResetPasswordTokenCreatedEvent } from '../modules/projects/events/ResetPasswordTokenCreatedEvent';
 import { ResetPasswordTokenHandler } from '../modules/projects/listeners/ResetPasswordTokenHandler';
+import { TransactionService } from '@app/infra/database/TransactionService';
 
 export class UserProvider extends BaseProvider {
   register() {
     this.ioc.bind('createUser', () => {
       return new CreateUserService({
-        userRepository: new UserRepository(),
+        userRepository: new UserRepository(new TransactionService()),
         eventDispatcher: this.ioc.use('eventDispatcher'),
       });
     });
@@ -24,7 +25,7 @@ export class UserProvider extends BaseProvider {
     });
     this.ioc.bind('ResetUserPasswordUseCase', () => {
       return new ResetUserPasswordUseCase({
-        userRepository: new UserRepository(),
+        userRepository: new UserRepository(new TransactionService()),
         eventDispatcher: this.ioc.use('eventDispatcher'),
         mailService: this.ioc.use('MailService'),
       });
