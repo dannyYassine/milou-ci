@@ -3,6 +3,7 @@ import fs from 'fs';
 import { ScriptRunner } from './ScriptRunner';
 import { JobFinishedEvent } from '@app/modules/jobs/events/JobFinishedEvent';
 import { JobDataOutputedEvent } from '@app/modules/jobs/events/JobDataOutputedEvent';
+import { JobStartedEvent } from '@app/modules/jobs/events/JobStartedEvent';
 
 export class ProcessManager {
   /**
@@ -46,6 +47,11 @@ export class ProcessManager {
             cwd: this.cwd,
             detached: true,
           },
+        });
+        runner.on('start', () => {
+          this.eventDispatcher.emit(
+            new JobStartedEvent({ job: {}, pid: runner.pid })
+          );
         });
         runner.on('data:out', ({ data }) => {
           this.eventDispatcher.emit(

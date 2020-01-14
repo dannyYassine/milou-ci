@@ -8,6 +8,8 @@ import { JobFinishedEvent } from '../events/JobFinishedEvent';
 import { JobFinishedHandler } from '../listeners/JobFinishedHandler';
 import { JobDataOutputedHandler } from '../listeners/JobDataOutputedHandler';
 import { JobDataOutputedEvent } from '../events/JobDataOutputedEvent';
+import { JobStartedEvent } from '../events/JobStartedEvent';
+import { JobStartedHandler } from '../listeners/JobStartedHandler';
 
 export class JobProvider extends BaseProvider {
   register() {
@@ -31,6 +33,7 @@ export class JobProvider extends BaseProvider {
     this.ioc
       .use('eventDispatcher')
       .handle(TriggeredJobEvent, TriggeredJobHandler)
+      .handle(JobStartedEvent, JobStartedHandler)
       .handle(JobFinishedEvent, JobFinishedHandler)
       .handle(JobDataOutputedEvent, JobDataOutputedHandler);
   }

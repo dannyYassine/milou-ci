@@ -9,6 +9,7 @@ export class ScriptRunner extends EventEmitter {
     this.filepath = filepath;
     this.options = options;
     this.pid = null;
+    this.didStart = false;
   }
 
   run() {
@@ -19,10 +20,18 @@ export class ScriptRunner extends EventEmitter {
       resolve(this.pid);
 
       child.stdout.on('data', data => {
+        if (!this.didStart) {
+          this.didStart = true;
+          this.emit('start');
+        }
         this.emit('data:out', { data });
       });
 
       child.stderr.on('data', data => {
+        if (!this.didStart) {
+          this.didStart = true;
+          this.emit('start');
+        }
         this.emit('data:err', { data });
       });
 
