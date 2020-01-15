@@ -1,5 +1,4 @@
 import { BaseUserCaseService } from '@app/core/BaseUseCaseService';
-import { ProcessManager } from '@app/infra/processmanager/ProcessManager';
 
 export class BuildJobUseCase extends BaseUserCaseService {
   constructor({ processManager }) {

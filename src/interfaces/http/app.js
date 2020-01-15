@@ -21,19 +21,15 @@ export class Application {
 
     ApiInit(this.app);
 
-    this.app.get('/', (req, res) => {
-      res.send('Hello World!');
-    });
-
     this.app.get('/health', (req, res) => {
       res.status(200).json({ data: 'Healthy' });
     });
 
     this.app.use(function(err, req, res, next) {
-      console.log(err.stack);
       const errorCode = err.constructor.name === 'Error' ? 500 : 404;
       res.status(errorCode).json({
         error: errorCode,
+        trace: err.stack,
         data: err.message,
       });
     });
