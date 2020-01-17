@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { ioc } from '@app/core/ioc';
 import { setup } from './../../providers';
 import { init as ApiInit } from '@app/interfaces/http/api';
@@ -27,9 +27,10 @@ export class Application {
 
     this.app.use(function(err, req, res, next) {
       const errorCode = err.constructor.name === 'Error' ? 500 : 404;
+      console.log(err.stack);
       res.status(errorCode).json({
         error: errorCode,
-        trace: err.stack,
+        trace: err.stack.split('\n'),
         data: err.message,
       });
     });

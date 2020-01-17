@@ -1,5 +1,5 @@
 import { BaseProvider } from '@app/core/BaseProvider';
-import config from './../../milou.config.json';
+import * as config from './../../milou.config.json';
 import { MailService } from '@app/infra/mail';
 
 export class ConfigProvider extends BaseProvider {
@@ -9,6 +9,7 @@ export class ConfigProvider extends BaseProvider {
     });
 
     this.ioc.singleton('Config', () => {
+      console.log('config: ', config);
       return config;
     });
 

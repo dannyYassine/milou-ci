@@ -1,3 +1,3 @@
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
-dotenv.config({ debug: process.env.DEBUG });
+config({ debug: process.env.DEBUG });

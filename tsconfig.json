@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "types": [
+            "node",
+            "dotenv",
+            "uuid"
+        ]
+    },
+    "files": [
+      "./node_modules/@types/node/index.d.ts"
+    ],
+    "include": [
+      "./src/**/*.js",
+      "./src/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "!node_modules/@types",
+      "./dist"
+    ]
+}

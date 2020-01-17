@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { ioc } from '@app/core/ioc';
 import { PresenterApi } from '@app/interfaces/http/core/PresenterApi';
 import { TriggeredJobEvent } from './events/TriggeredJobEvent';

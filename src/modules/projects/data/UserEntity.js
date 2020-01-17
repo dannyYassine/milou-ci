@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import * as Sequelize from 'sequelize';
 import { sequelize } from '@app/infra/database';
 
 const User = sequelize.define('users', {

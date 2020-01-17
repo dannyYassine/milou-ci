@@ -4,28 +4,42 @@
   "description": "Javascript CI",
   "main": "index.js",
   "scripts": {
-    "postinstall": "node -e \"var s='../src',d='node_modules/@app',fs=require('fs');fs.exists(d,function(e){e||fs.symlinkSync(s,d,'dir')});\"",
     "symlink": "node -e \"var s='../src',d='node_modules/@app',fs=require('fs');fs.exists(d,function(e){e||fs.symlinkSync(s,d,'dir')});\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "pm2 start npm --watch -- run start",
     "serve:stop": "pm2 stop all",
-    "start": "node --experimental-modules --es-module-specifier-resolution=node src/server"
+    "start": "node --experimental-modules --es-module-specifier-resolution=node src/server",
+    "build": "webpack --config webpack.config.js"
   },
-  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.2",
     "@types/node": "^13.1.4",
+    "@types/sequelize": "^4.28.8",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "ioc-node": "^2.3.2",
+    "module-alias": "^2.2.2",
     "nodemailer": "^6.4.2",
     "operationkit": "^0.2.2",
     "sequelize": "^5.21.3",
     "sqlite3": "^4.1.1",
+    "ts-loader": "^6.2.1",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "prettier": "1.19.1"
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "prettier": "1.19.1",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "_moduleAliases": {
+    "@app": "build"
   }
 }

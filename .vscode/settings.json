@@ -4,6 +4,9 @@
     "[javascript]": {
       "editor.formatOnSave": true
     },
+    "[typescript]": {
+      "editor.formatOnSave": true
+    },
     "npm.enableRunFromFolder": true,
     "npm.enableScriptExplorer": true,
     "npm.enableTouchbar": true
