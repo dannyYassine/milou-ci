@@ -1,11 +1,8 @@
 import { BaseEventHandler } from '@app/core/listeners/BaseEventHandler';
+import { JobStartedEvent } from '@app/modules/jobs/events/JobStartedEvent';
 
 export class JobStartedHandler extends BaseEventHandler {
-  /**
-   *
-   * @param {JobStartedEvent} event
-   */
-  handle(event) {
+  handle(event: JobStartedEvent) {
     console.log(`Job started with pid ${event.pid}`);
   }
 }

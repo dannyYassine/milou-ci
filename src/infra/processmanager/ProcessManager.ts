@@ -1,31 +1,27 @@
-import path from 'path';
-import fs from 'fs';
+import * as path from 'path';
 import { ScriptRunner } from './ScriptRunner';
 import { JobFinishedEvent } from '@app/modules/jobs/events/JobFinishedEvent';
 import { JobDataOutputedEvent } from '@app/modules/jobs/events/JobDataOutputedEvent';
 import { JobStartedEvent } from '@app/modules/jobs/events/JobStartedEvent';
+import { IEventDispatcher } from '@app/core/events/IEventDispatcher';
+import { Job } from '@app/modules/jobs/models/Job';
 
 export class ProcessManager {
-  /**
-   * Location of project scripts
-   */
-  static scriptsPath = '/src/infra/processmanager/scripts';
+  public static scriptsPath: string = '/src/infra/processmanager/scripts';
 
-  /**
-   * Map<number, ScriptRunner>
-   */
-  runners;
+  public runners: Map<number, ScriptRunner>;
 
-  constructor({ eventDispatcher }) {
+  private eventDispatcher: IEventDispatcher;
+
+  private cwd: string;
+
+  constructor(eventDispatcher: IEventDispatcher) {
     this.eventDispatcher = eventDispatcher;
     this.cwd = path.join(path.resolve(), ProcessManager.scriptsPath);
-    this.runners = new Map();
+    this.runners = new Map<number, ScriptRunner>();
   }
 
-  /**
-   * @param {string|number} pid
-   */
-  async kill(pid) {
+  async kill(pid: number) {
     try {
       process.kill(-pid);
       return true;
@@ -34,11 +30,7 @@ export class ProcessManager {
     }
   }
 
-  /**
-   *
-   * @param {string} filename
-   */
-  executeScript(filename) {
+  executeScript(filename: string) {
     return new Promise(async (resolve, reject) => {
       try {
         const runner = new ScriptRunner({
@@ -49,29 +41,19 @@ export class ProcessManager {
           },
         });
         runner.on('start', () => {
-          this.eventDispatcher.emit(
-            new JobStartedEvent({ job: {}, pid: runner.pid })
-          );
+          this.eventDispatcher.emit(new JobStartedEvent(new Job(), runner.pid));
         });
         runner.on('data:out', ({ data }) => {
-          this.eventDispatcher.emit(
-            new JobDataOutputedEvent({ pid: runner.pid, data })
-          );
+          this.eventDispatcher.emit(new JobDataOutputedEvent(runner.pid, data));
         });
         runner.on('data:err', ({ data }) => {
-          this.eventDispatcher.emit(
-            new JobDataOutputedEvent({ pid: runner.pid, data })
-          );
+          this.eventDispatcher.emit(new JobDataOutputedEvent(runner.pid, data));
         });
         runner.on('exit', ({ code, signal, child }) => {
           if (code == 0) {
-            this.eventDispatcher.emit(
-              new JobFinishedEvent({ success: true, pid: child.pid })
-            );
+            this.eventDispatcher.emit(new JobFinishedEvent(true, child.pid));
           } else {
-            this.eventDispatcher.emit(
-              new JobFinishedEvent({ success: false, pid: child.pid })
-            );
+            this.eventDispatcher.emit(new JobFinishedEvent(false, child.pid));
           }
           this.runners.delete(runner.id);
         });
