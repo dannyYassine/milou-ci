@@ -1,6 +1,6 @@
 import { BaseUserCaseService } from '@app/core/BaseUseCaseService';
-import { CreateUserDuplicateEmailError } from '@app/modules/projects/errors/CreateUserDuplicateEmailError';
-import { UserCreatedEvent } from '@app/modules/projects/events/UserCreatedEvent';
+import { CreateUserDuplicateEmailError } from '@app/modules/user/errors/CreateUserDuplicateEmailError';
+import { UserCreatedEvent } from '@app/modules/user/events/UserCreatedEvent';
 
 export class CreateUserService extends BaseUserCaseService {
   /**

@@ -1,5 +1,6 @@
 import { BaseEventHandler } from '@app/core/listeners/BaseEventHandler';
-import { ResetPasswordTokenCreatedEvent } from '@app/modules/projects/events/ResetPasswordTokenCreatedEvent';
+import { ResetPasswordTokenCreatedEvent } from '@app/modules/user/events/ResetPasswordTokenCreatedEvent';
+import { MailService } from '@app/infra/mail';
 
 export class ResetPasswordTokenHandler extends BaseEventHandler {
   addSubscriptions() {
@@ -10,7 +11,7 @@ export class ResetPasswordTokenHandler extends BaseEventHandler {
    * @param {ResetPasswordTokenCreatedEvent} event
    */
   handle(event) {
-    this.ioc.use('MailService').sendResetPassword({
+    this.ioc.use(MailService).sendResetPassword({
       email: event.email,
     });
   }

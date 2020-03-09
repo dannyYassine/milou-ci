@@ -1,12 +1,19 @@
 import { BaseEvent } from '@app/core/events/BaseEvent';
+import { User } from '@app/modules/user/models/User';
 
 export class UserCreatedEvent extends BaseEvent {
-  constructor(user) {
+  private user: User;
+
+  constructor(user: User) {
     super();
     this.user = user;
   }
 
-  getEmail() {
+  getEmail(): string {
     return this.user.email;
+  }
+
+  getId(): string {
+    return this.user.id;
   }
 }

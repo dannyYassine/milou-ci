@@ -9,11 +9,10 @@ export class ConfigProvider extends BaseProvider {
     });
 
     this.ioc.singleton('Config', () => {
-      console.log('config: ', config);
       return config;
     });
 
-    this.ioc.singleton('MailService', () => {
+    this.ioc.singleton(MailService, () => {
       return new MailService();
     });
   }

@@ -1,7 +1,7 @@
-import { ioc } from './ioc';
+import { ioc, IOC } from './ioc';
 
 export class BaseProvider {
-  public ioc: any;
+  public ioc: IOC;
 
   constructor() {
     this.ioc = ioc;

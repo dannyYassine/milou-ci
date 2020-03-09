@@ -1,7 +1,13 @@
 import * as uuidv4 from 'uuid/v4';
-import { ioc } from '@app/core/ioc';
+import { ioc, IOC } from '@app/core/ioc';
+import { EventDispatcher } from '@app/core/events/EventDispatcher';
+import { IEventDispatcher } from '../events/IEventDispatcher';
 
 export class BaseEventHandler {
+  private _id: string;
+
+  protected ioc: IOC;
+
   constructor() {
     this._id = uuidv4();
     this.ioc = ioc;
@@ -19,7 +25,7 @@ export class BaseEventHandler {
    */
   subscribeTo(event, method = null) {
     this.ioc
-      .use('eventDispatcher')
+      .use<IEventDispatcher>(EventDispatcher)
       .on(event, method ? method.bind(this) : this.handle.bind(this));
   }
 

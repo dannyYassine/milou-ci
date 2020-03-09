@@ -8,4 +8,4 @@ const cleanExit = function() {
 process.on('SIGINT', cleanExit); // catch ctrl-c
 process.on('SIGTERM', cleanExit); // catch kill
 
-new Application().bootstrap().run();
+new Application().run();

@@ -1,6 +1,6 @@
 import { BaseUserCaseService } from '@app/core/BaseUseCaseService';
-import { CreateUserDuplicateEmailError } from '@app/modules/projects/errors/CreateUserDuplicateEmailError';
-import { UserCreatedEvent } from '@app/modules/projects/events/UserCreatedEvent';
+import { CreateUserDuplicateEmailError } from '@app/modules/user/errors/CreateUserDuplicateEmailError';
+import { UserCreatedEvent } from '@app/modules/user/events/UserCreatedEvent';
 import { UserNotFound } from '../errors/UserNotFound';
 import { User } from '../models/User';
 import { ResetPasswordTokenCreatedEvent } from '../events/ResetPasswordTokenCreatedEvent';
@@ -10,7 +10,7 @@ export class ResetUserPasswordUseCase extends BaseUserCaseService {
    *
    * @param {UserRepository} userRepository
    * @param {EventDispatcher} eventDispatcher
-   * @param {MailService} mailService
+   * @param {IMailService} mailService
    */
   constructor({ userRepository, eventDispatcher, mailService }) {
     super();
@@ -20,7 +20,7 @@ export class ResetUserPasswordUseCase extends BaseUserCaseService {
   }
 
   /**
-   * @param resetUserPasswordDto
+   * @param {ResetUserPasswordDto} resetUserPasswordDto
    */
   execute(resetUserPasswordDto) {
     const { email } = resetUserPasswordDto;

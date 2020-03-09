@@ -11,11 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "runtimeArgs": [
-                "--experimental-modules",
-                "--es-module-specifier-resolution=node"
-            ],
-            "program": "${workspaceFolder}/src/server.js"
+            "program": "${workspaceFolder}/dist/bundle.js"
         }
     ]
 }

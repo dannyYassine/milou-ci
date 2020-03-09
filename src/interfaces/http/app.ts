@@ -16,7 +16,7 @@ export class Application {
   /**
    * Load and setup application dependencies
    */
-  bootstrap() {
+  async bootstrap() {
     setup();
 
     ApiInit(this.app);
@@ -41,8 +41,11 @@ export class Application {
   /**
    * Execute application
    */
-  run() {
-    const config = ioc.use('Config');
+  async run() {
+    await this.bootstrap();
+
+    const config = ioc.use<any>('Config');
+
     this.app.listen(config.port, () => {
       console.log(`Example app listening on port ${config.port}!`);
     });

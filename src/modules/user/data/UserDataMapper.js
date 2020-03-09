@@ -1,5 +1,5 @@
-import { UserEntity } from '@app/modules/projects/data/UserEntity';
-import { User } from '@app/modules/projects/models/User';
+import { UserEntity } from '@app/modules/user/data/UserEntity';
+import { User } from '@app/modules/user/models/User';
 
 class BaseDataMapper {
   constructor(model, entity) {

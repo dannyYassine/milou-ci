@@ -1,4 +1,4 @@
-import { router as projectsRouter } from '@app/modules/projects/routes';
+import { router as projectsRouter } from '@app/modules/user/routes';
 import { router as jobsRouter } from '@app/modules/jobs/routes';
 
 /**

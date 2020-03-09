@@ -14,7 +14,8 @@
         "baseUrl": ".",
         "paths": {
           "@app/*": ["src/*"]
-        }
+        },
+        "sourceMap": true
     },
     "files": [
       "./node_modules/@types/node/index.d.ts"

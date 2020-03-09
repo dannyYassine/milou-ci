@@ -1,5 +1,5 @@
-import { UserDataMapper } from '@app/modules/projects/data/UserDataMapper';
-import { UserEntity } from '@app/modules/projects/data/UserEntity';
+import { UserDataMapper } from '@app/modules/user/data/UserDataMapper';
+import { UserEntity } from '@app/modules/user/data/UserEntity';
 import { BaseRepository } from '@app/core/repos/BaseRepository';
 
 export class UserRepository extends BaseRepository {

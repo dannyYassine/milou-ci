@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { MailTemplate } from './MailTemplate';
 import { transporter } from './nodemailer';
+import { MailOption } from './MailOption';
 
 export class MailService {
   static getTemplatesPath() {

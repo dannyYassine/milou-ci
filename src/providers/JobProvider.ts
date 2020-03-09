@@ -10,27 +10,33 @@ import { JobDataOutputedHandler } from '@app/modules/jobs/listeners/JobDataOutpu
 import { JobDataOutputedEvent } from '@app/modules/jobs/events/JobDataOutputedEvent';
 import { JobStartedEvent } from '@app/modules/jobs/events/JobStartedEvent';
 import { JobStartedHandler } from '@app/modules/jobs/listeners/JobStartedHandler';
+import { EventDispatcher } from '@app/core/events/EventDispatcher';
+import { IEventDispatcher } from '../core/events/IEventDispatcher';
 
 export class JobProvider extends BaseProvider {
   register() {
-    this.ioc.bind('BuildJobUseCase', () => {
+    this.ioc.bind<BuildJobUseCase>('BuildJobUseCase', () => {
       return new BuildJobUseCase({
-        processManager: new ProcessManager(this.ioc.use('eventDispatcher')),
+        processManager: new ProcessManager(
+          this.ioc.use<EventDispatcher>('eventDispatcher')
+        ),
       });
     });
-    this.ioc.bind('StopJobUseCase', () => {
+    this.ioc.bind<StopJobUseCase>('StopJobUseCase', () => {
       return new StopJobUseCase({
-        processManager: new ProcessManager(this.ioc.use('eventDispatcher')),
+        processManager: new ProcessManager(
+          this.ioc.use<IEventDispatcher>('eventDispatcher')
+        ),
       });
     });
   }
 
   boot() {
     this.ioc
-      .use('eventDispatcher')
-      .handle(TriggeredJobEvent, TriggeredJobHandler)
-      .handle(JobStartedEvent, JobStartedHandler)
-      .handle(JobFinishedEvent, JobFinishedHandler)
-      .handle(JobDataOutputedEvent, JobDataOutputedHandler);
+      .use<IEventDispatcher>(EventDispatcher)
+      .handle(TriggeredJobEvent.name, new TriggeredJobHandler())
+      .handle(JobStartedEvent.name, new JobStartedHandler())
+      .handle(JobFinishedEvent.name, new JobFinishedHandler())
+      .handle(JobDataOutputedEvent.name, new JobDataOutputedHandler());
   }
 }

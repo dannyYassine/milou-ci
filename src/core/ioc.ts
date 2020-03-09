@@ -1,21 +1,21 @@
 import * as path from 'path';
 import * as iocFn from 'ioc-node';
 
-export const ioc = iocFn(path.resolve());
-const _ioc = ioc;
+// const ioc = iocFn(path.resolve());
+const _ioc = iocFn(path.resolve());
 
 export class IOC {
-  public use(type: any) {
+  public use<T>(type: any): T {
     return _ioc.use(String(type));
   }
 
-  public bind(type: any) {
-    return _ioc.bind(String(type));
+  public bind<T>(type: any, cb): T {
+    return _ioc.bind(String(type), cb);
   }
 
-  public singleton(type: any) {
-    return _ioc.singleton(String(type));
+  public singleton<T>(type: any, cb): T {
+    return _ioc.singleton(String(type), cb);
   }
 }
 
-// export const ioc = new IOC();
+export const ioc = new IOC();
